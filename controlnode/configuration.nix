@@ -31,7 +31,7 @@
     pkgs.curl
     pkgs.gitMinimal
   ];
-
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
   [
     # change this to your ssh key
