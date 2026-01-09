@@ -45,7 +45,7 @@
   networking = {
     interfaces = {
       ens18.ipv4.addresses = [{
-        address = "192.168.1.180";
+        address = "192.168.1.185";
         prefixLength = 24;
       }];
 
