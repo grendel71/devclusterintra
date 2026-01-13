@@ -30,6 +30,8 @@
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
+    pkgs.htop
+    pkgs.btop
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
