@@ -69,9 +69,7 @@
           };
         };
       };
-    };
-    k8sPool = {
-      pool = {
+      k8sPool = {
         type = "lvm_vg";
         lvs = {
           root = {
