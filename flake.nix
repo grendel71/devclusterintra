@@ -97,6 +97,26 @@
           })
         ];
       };
+      nixosConfigurations.storageBackend = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./storageBackend/configuration.nix
+          ./storageBackend/hardware-configuration.nix
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "storageBackend";
+              remotes = [{
+                name = "origin";
+                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                branches.main.name = "main";
+              }];
+            };
+          })
+        ];
+      };
       # Slightly experimental: Like generic, but with nixos-facter (https://github.com/numtide/nixos-facter)
       # nixos-anywhere --flake .#generic-nixos-facter --generate-hardware-config nixos-facter facter.json <hostname>
       nixosConfigurations.generic-nixos-facter = nixpkgs.lib.nixosSystem {
