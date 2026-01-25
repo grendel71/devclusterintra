@@ -65,8 +65,12 @@
   networking.firewall.allowedTCPPorts = [
     2049
   ];
-  services.nfs.server.enable = true;
-
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /home/blau/share 192.168.1.0/24(rw,sync,no_subtree_check)
+    '';
+  };
  users.users.blau = {
     isNormalUser = true;
     description = "blau";
