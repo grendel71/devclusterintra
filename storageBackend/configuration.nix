@@ -61,7 +61,7 @@
 
   networking.networkmanager.dhcp = "dhcpcd";
 
-  #networking.nameservers = [ "192.168.1.50" ];
+  networking.nameservers = [ "192.168.1.1" ];
   networking.firewall.allowedTCPPorts = [
     2049
   ];
