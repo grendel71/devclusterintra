@@ -32,6 +32,7 @@
     pkgs.gitMinimal
     pkgs.htop
     pkgs.btop
+    pkgs.nfs-utils
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
