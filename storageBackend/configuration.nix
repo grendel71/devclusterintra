@@ -68,7 +68,7 @@
   services.nfs.server = {
     enable = true;
     exports = ''
-      /home/blau/share 192.168.1.0/24(rw,sync,no_subtree_check,insecure,no_root_squash)
+      /home/blau/share *(rw,sync,no_subtree_check,insecure,no_root_squash)
     '';
   };
  users.users.blau = {
