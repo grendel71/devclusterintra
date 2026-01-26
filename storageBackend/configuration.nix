@@ -68,7 +68,8 @@
   services.nfs.server = {
     enable = true;
     exports = ''
-      /home/blau/share *(rw,sync,no_subtree_check,insecure,no_root_squash)
+      /home/blau/nextcloud-data *(rw,sync,no_subtree_check,insecure,no_root_squash)
+      /home/blau/nextcloud-db *(rw,sync,no_subtree_check,insecure,no_root_squash)
     '';
   };
  users.users.blau = {
