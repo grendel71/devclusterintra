@@ -71,6 +71,7 @@
       /home/blau/nextcloud-data *(rw,sync,no_subtree_check,insecure,no_root_squash)
       /home/blau/nextcloud-db *(rw,sync,no_subtree_check,insecure,no_root_squash)
       /media/k8s/vaultwarden *(rw,sync,no_subtree_check,insecure,no_root_squash)
+      /media/k8s/storageBackend *(rw,sync,no_subtree_check,insecure,no_root_squash)
     '';
   };
  users.users.blau = {
@@ -84,6 +85,7 @@
     #shell = pkgs.fish;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFnx/ZGyG6ED/Pe1SUWEDeGhuAl5PV6thdet6Pu9p55z blau@blau-pc"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH+gzK8xwCY7/YsF1TeJjMrjwCjNjzRUTHB5ILNIqCL1 blau@blau-laptop"
     ];
   };
 }
