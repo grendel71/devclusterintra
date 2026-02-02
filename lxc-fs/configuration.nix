@@ -43,6 +43,50 @@
   system.stateVersion = "25.05";
 
   networking.hostName = "lxc-fs";
+
+  users.users.blau = {
+    isNormalUser = true;
+    uid = 101000;
+    #gid = 101000;
+    extraGroups = ["wheel" "networkmanager"]
+
+  };
+  networking.firewall.allowedTCPPorts = [
+    2049
+  ];
+  services.nfs.server = {
+    enable = true;
+    exports = ''
+      /mnt/grendel *(rw,sync,no_subtree_check,insecure,no_root_squash)
+    '';
+  };
+
+  services.samba = {
+  enable = true;
+  securityType = "user";
+  openFirewall = true;
+  settings = {
+    "private" = {
+      "path" = "/mnt/grendel";
+      "browseable" = "yes";
+      "read only" = "no";
+      "guest ok" = "no";
+      "create mask" = "0644";
+      "directory mask" = "0755";
+      "force user" = "blau";
+      "force group" = "users";
+    };
+  };
+};
+
+services.samba-wsdd = {
+  enable = true;
+  openFirewall = true;
+};
+
+networking.firewall.enable = true;
+networking.firewall.allowPing = true;
+
   #system.autoUpgrade.flake = "github:grendel71/home-nix-infra";
   #system.autoUpgrade.enable = true;
 
