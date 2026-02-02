@@ -48,7 +48,7 @@
     isNormalUser = true;
     uid = 101000;
     #gid = 101000;
-    extraGroups = ["wheel" "networkmanager"]
+    extraGroups = ["wheel" "networkmanager"];
 
   };
   networking.firewall.allowedTCPPorts = [
