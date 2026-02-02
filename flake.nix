@@ -137,6 +137,26 @@
           })
         ];
       };
+
+      nixosConfigurations.lxc-fs = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./lxc-fs/configuration.nix
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "lxc-fs";
+              remotes = [{
+                name = "origin";
+                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                branches.main.name = "main";
+              }];
+            };
+          })
+        ];
+      };
       # Slightly experimental: Like generic, but with nixos-facter (https://github.com/numtide/nixos-facter)
       # nixos-anywhere --flake .#generic-nixos-facter --generate-hardware-config nixos-facter facter.json <hostname>
       nixosConfigurations.generic-nixos-facter = nixpkgs.lib.nixosSystem {
