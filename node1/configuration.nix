@@ -78,8 +78,5 @@
     role = "agent";
     token = "Ozh6Kn1yYNIKdK7W5h5Hd6qp8gLpq4IDNTW3L4k9yaE=";
     serverAddr = "https://192.168.1.179:6443";
-    extraFlags = toString [
-      "--disable servicelb"
-    ];
   };
 }
