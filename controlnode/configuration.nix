@@ -79,5 +79,8 @@
     role = "server";
     token = "Ozh6Kn1yYNIKdK7W5h5Hd6qp8gLpq4IDNTW3L4k9yaE=";
     clusterInit = true;
+    services.k3s.extraFlags = toString [
+      "--disable servicelb"
+    ];
   };
 }

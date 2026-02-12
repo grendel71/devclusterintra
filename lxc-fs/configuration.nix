@@ -58,6 +58,7 @@
     enable = true;
     exports = ''
       /mnt/grendel *(rw,sync,no_subtree_check,insecure,no_root_squash)
+      /mnt/torrents *(rw,sync,no_subtree_check,insecure,no_root_squash)
     '';
   };
 
