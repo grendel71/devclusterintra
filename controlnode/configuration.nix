@@ -81,6 +81,7 @@
     clusterInit = true;
     extraFlags = toString [
       "--disable servicelb"
+      "--disable traefik"
     ];
   };
 }
