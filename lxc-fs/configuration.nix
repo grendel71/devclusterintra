@@ -51,6 +51,14 @@
     extraGroups = ["wheel" "networkmanager"];
 
   };
+
+  users.users.nextcloud = {
+    isNormalUser = true;
+    uid = 1041;
+    #gid = 101000;
+    #extraGroups = ["wheel" "networkmanager"];
+
+  };
   networking.firewall.allowedTCPPorts = [
     2049
   ];
