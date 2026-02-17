@@ -36,9 +36,6 @@
     pkgs.htop
     pkgs.btop
     pkgs.nfs-utils
-    (pkgs.kodi.withPackages (kodiPkgs: with kodiPkgs; [
-	jellyfin
-    ]))
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
@@ -54,6 +51,7 @@
   services.xserver.desktopManager.kodi.enable = true;
   services.displayManager.autoLogin.user = "kodi";
   services.xserver.displayManager.lightdm.greeter.enable = false;
+  services.xserver.displayManager.kodi.package = pkgs.kodi.withPackages (pkgs: with pkgs; [ jellyfin ]);
 
   # Define a user account
   users.extraUsers.kodi.isNormalUser = true;
