@@ -46,7 +46,7 @@
   system.stateVersion = "25.11";
 
   networking.hostName = "htpc";
-
+  services.tailscale.enable = true;
   #networking = {
   #  interfaces = {
   #    ens18.ipv4.addresses = [{
