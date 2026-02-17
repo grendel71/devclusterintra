@@ -33,6 +33,7 @@
     pkgs.htop
     pkgs.btop
     pkgs.nfs-utils
+    pkgs.kodi
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
@@ -45,6 +46,10 @@
 
   system.stateVersion = "25.11";
 
+  services.xserver = {
+	displayManager.gdm.enable = true;
+	displayManager.gnome.enable = true;
+  };
   networking.hostName = "htpc";
   services.tailscale.enable = true;
   #networking = {
