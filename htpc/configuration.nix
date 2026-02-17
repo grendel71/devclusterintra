@@ -16,8 +16,6 @@
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-  hardware.pulseaudio.enable = true;
-  hardware.pulseaudio.support32Bit = true;
   services.openssh = {
     enable = true;
     openFirewall = true;
@@ -31,7 +29,19 @@
     allowedTCPPorts = [ 8080 ];
     allowedUDPPorts = [ 8080 ];
   };
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  hardware.graphics = {
+	enable = true;
+	extraPackages = with pkgs; [
+		intel-media-driver
+		vpl-gpu-rt
+		intel-compute-runtime
+	];
+ };
+ environment.sessionVariables = {
+    LIBVA_DRIVER_NAME = "iHD";     # Prefer the modern iHD backend
+    # VDPAU_DRIVER = "va_gl";      # Only if using libvdpau-va-gl
+  }; 
+ nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
     pkgs.gitMinimal
