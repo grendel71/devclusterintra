@@ -25,7 +25,10 @@
         PermitEmptyPasswords = "yes";
     };
   };
-
+  networking.firewall = {
+    allowedTCPPorts = [ 8080 ];
+    allowedUDPPorts = [ 8080 ];
+  };
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   environment.systemPackages = map lib.lowPrio [
     pkgs.curl
