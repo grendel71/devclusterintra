@@ -45,11 +45,14 @@
   ] ++ (args.extraPublicKeys or []); # this is used for unit-testing this module and can be removed if not needed
 
   system.stateVersion = "25.11";
+  services.xserver.enable = true;
+  services.xserver.desktopManager.kodi.enable = true;
+  services.displayManager.autoLogin.user = "kodi";
+  services.xserver.displayManager.lightdm.greeter.enable = false;
 
-  services.xserver = {
-	displayManager.gdm.enable = true;
-	displayManager.gnome.enable = true;
-  };
+  # Define a user account
+  users.extraUsers.kodi.isNormalUser = true;
+
   networking.hostName = "htpc";
   services.tailscale.enable = true;
   #networking = {
