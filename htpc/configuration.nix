@@ -36,7 +36,9 @@
     pkgs.htop
     pkgs.btop
     pkgs.nfs-utils
-    pkgs.kodi
+    (pkgs.kodi.withPackages (kodiPkgs: with kodiPkgs; [
+	jellyfin
+    ]))
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
