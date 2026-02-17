@@ -63,7 +63,7 @@
   services.xserver.desktopManager.kodi.enable = true;
   services.displayManager.autoLogin.user = "kodi";
   services.xserver.displayManager.lightdm.greeter.enable = false;
-  services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs: with pkgs; [ jellyfin ]);
+  services.xserver.desktopManager.kodi.package = pkgs.kodi.withPackages (pkgs: with pkgs; [ jellyfin youtube netflix invidious ]);
 
   # Define a user account
   users.extraUsers.kodi.isNormalUser = true;
