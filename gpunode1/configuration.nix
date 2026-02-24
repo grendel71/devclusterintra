@@ -80,6 +80,8 @@
     serverAddr = "https://192.168.1.179:6443";
   };
 
+  nixpkgs.config.allowUnfree = true;
+
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia.open = true;
