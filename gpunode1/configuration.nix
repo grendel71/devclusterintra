@@ -80,7 +80,14 @@
     role = "agent";
     token = "Ozh6Kn1yYNIKdK7W5h5Hd6qp8gLpq4IDNTW3L4k9yaE=";
     serverAddr = "https://192.168.1.179:6443";
-    extraFlags = "--node-label gpu=true";
+    
+    extraFlags = (toString [
+      "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
+    ]);
+
+    label = {
+      "nixos-nvidia-cdi" = "enabled";
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -106,20 +113,10 @@
     };
   };
 
-  systemd.services.nvidia-gpu-powerlimit = {
-    description = "Set NVIDIA GPU power limit";
-    wantedBy = [ "multi-user.target" ];
-    after = [
-      "nvidia-persistenced.service"
-      "systemd-udev-settle.service"
-    ];
-    requires = [ "nvidia-persistenced.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      ExecStart = [
-        "${config.hardware.nvidia.package.bin}/bin/nvidia-smi -pl 220"
-      ];
+  virtualisation.containerd.settings = {
+  plugins."io.containerd.grpc.v1.cri".containerd = {
+    enable_cdi = true;
+    cdi_spec_dirs = [ "/var/run/cdi" ];
     };
   };
 }
