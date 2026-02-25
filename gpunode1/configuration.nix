@@ -2,6 +2,7 @@
   modulesPath,
   lib,
   pkgs,
+  config,
   ...
 } @ args:
 {
@@ -87,13 +88,13 @@
   nixpkgs.config.cudaSupport = true;
 
   services.xserver = {
-    enable = false;
+    #enable = false;
     videoDrivers = [ "nvidia" ];
   };
 
   hardware = {
     nvidia = {
-      open = true;
+      open = false;
       nvidiaPersistenced = true;
       nvidiaSettings = true;
     };
