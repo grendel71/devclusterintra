@@ -84,10 +84,6 @@
     extraFlags = (toString [
       "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
     ]);
-
-    label = {
-      "nixos-nvidia-cdi" = "enabled";
-    };
   };
 
   nixpkgs.config.allowUnfree = true;
