@@ -84,5 +84,11 @@
 
   hardware.graphics.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = false;
+  hardware.nvidia = {
+    open = false;
+    # Keep GPU initialized between workloads (important for k8s pods that come and go)
+    powerManagement.enable = true;
+    # Enables nvidia-container-toolkit and configures containerd to use the nvidia runtime
+    container-toolkit.enable = true;
+  };
 }
