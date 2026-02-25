@@ -82,7 +82,6 @@
     serverAddr = "https://192.168.1.179:6443";
     
     extraFlags = (toString [
-      "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
       "--node-label nixos-nvidia-cdi=enabled"
     ]);
   };
@@ -107,14 +106,6 @@
     nvidia-container-toolkit = {
       enable = true;
       mount-nvidia-executables = true;
-    };
-  };
-
-  virtualisation.containerd.enable = true;
-  virtualisation.containerd.settings = {
-  plugins."io.containerd.grpc.v1.cri".containerd = {
-    enable_cdi = true;
-    cdi_spec_dirs = [ "/var/run/cdi" ];
     };
   };
 }
