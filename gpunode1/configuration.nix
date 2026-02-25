@@ -83,12 +83,44 @@
   nixpkgs.config.allowUnfree = true;
 
   hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    open = false;
-    # Keep GPU initialized between workloads (important for k8s pods that come and go)
-    powerManagement.enable = true;
-    # Enables nvidia-container-toolkit and configures containerd to use the nvidia runtime
-    container-toolkit.enable = true;
+  nixpkgs.config.cudaSupport = true;
+
+  services.xserver = {
+    enable = false;
+    videoDrivers = [ "nvidia" ];
   };
+
+  hardware = {
+    nvidia = {
+      open = true;
+      nvidiaPersistenced = true;
+      nvidiaSettings = true;
+    };
+
+    nvidia-container-toolkit = {
+      enable = true;
+      mount-nvidia-executables = true;
+    };
+  };
+
+  systemd.services.nvidia-gpu-powerlimit = {
+    description = "Set NVIDIA GPU power limit";
+    wantedBy = [ "multi-user.target" ];
+    after = [
+      "nvidia-persistenced.service"
+      "systemd-udev-settle.service"
+    ];
+    requires = [ "nvidia-persistenced.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = [
+        "${config.hardware.nvidia.package.bin}/bin/nvidia-smi -pl 220"
+      ];
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    nvidia-container-toolkit
+  ];
 }
