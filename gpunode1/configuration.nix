@@ -50,7 +50,7 @@
   networking = {
     interfaces = {
       ens18.ipv4.addresses = [{
-        address = "192.168.1.350";
+        address = "192.168.1.250";
         prefixLength = 24;
       }];
   
@@ -62,7 +62,7 @@
   };
 
 
-  networking.networkmanager.dhcp = "dhcpcd";
+  #networking.networkmanager.dhcp = "dhcpcd";
 
   #networking.nameservers = [ "192.168.1.50" ];
   networking.firewall.allowedTCPPorts = [
