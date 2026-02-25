@@ -110,6 +110,7 @@
     };
   };
 
+  virtualisation.containerd.enable = true;
   virtualisation.containerd.settings = {
   plugins."io.containerd.grpc.v1.cri".containerd = {
     enable_cdi = true;
