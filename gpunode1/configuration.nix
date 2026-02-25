@@ -83,6 +83,7 @@
     
     extraFlags = (toString [
       "--container-runtime-endpoint unix:///run/containerd/containerd.sock"
+      "--node-label nixos-nvidia-cdi=enabled"
     ]);
   };
 
