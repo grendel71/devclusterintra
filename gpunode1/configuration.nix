@@ -33,6 +33,7 @@
     pkgs.htop
     pkgs.btop
     pkgs.nfs-utils
+    pkgs.nvidia-container-toolkit
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
@@ -119,8 +120,4 @@
       ];
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    nvidia-container-toolkit
-  ];
 }
