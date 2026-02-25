@@ -80,12 +80,13 @@
     role = "agent";
     token = "Ozh6Kn1yYNIKdK7W5h5Hd6qp8gLpq4IDNTW3L4k9yaE=";
     serverAddr = "https://192.168.1.179:6443";
+    extraFlags = "--node-label gpu=true";
   };
 
   nixpkgs.config.allowUnfree = true;
 
   hardware.graphics.enable = true;
-  nixpkgs.config.cudaSupport = true;
+  #nixpkgs.config.cudaSupport = false;
 
   services.xserver = {
     #enable = false;
