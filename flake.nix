@@ -137,6 +137,26 @@
           })
         ];
       };
+      nixosConfigurations.seaweednode1 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./seaweednode1/configuration.nix
+          ./seaweednode1/hardware-configuration.nix
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "seaweednode1";
+              remotes = [{
+                name = "origin";
+                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                branches.main.name = "main";
+              }];
+            };
+          })
+        ];
+      };
       nixosConfigurations.htpc = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
