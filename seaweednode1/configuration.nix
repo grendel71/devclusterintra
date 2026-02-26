@@ -35,6 +35,7 @@
     pkgs.btop
     pkgs.nfs-utils
     pkgs.nvidia-container-toolkit
+    pkgs.seaweedfs
   ];
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
   users.users.root.openssh.authorizedKeys.keys =
