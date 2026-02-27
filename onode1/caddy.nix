@@ -227,7 +227,12 @@ jaidenpapp.com {
 	handle @gitea {
 		reverse_proxy http://192.168.1.50:3000
 	}
+	@s3 host s3.local.grendel71.net
+	handle @s3 {
+		reverse_proxy http://192.168.1.88:8333
+	}
 }
+
 
     '';
   };
