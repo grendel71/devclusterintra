@@ -97,6 +97,26 @@
           })
         ];
       };
+      nixosConfigurations.node2 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          ./node2/configuration.nix
+          ./node2/hardware-configuration.nix
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "node2";
+              remotes = [{
+                name = "origin";
+                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                branches.main.name = "main";
+              }];
+            };
+          })
+        ];
+      };
       nixosConfigurations.gpunode1 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
