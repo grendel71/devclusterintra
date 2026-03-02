@@ -74,7 +74,7 @@
               hostname = "controlNode";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
@@ -95,7 +95,7 @@
               hostname = "node1";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
@@ -116,7 +116,7 @@
               hostname = "node2";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
@@ -137,7 +137,7 @@
               hostname = "gpunode1";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
@@ -157,7 +157,7 @@
               hostname = "storageBackend";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
@@ -177,7 +177,7 @@
               hostname = "seaweednode1";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
@@ -197,7 +197,7 @@
               hostname = "htpc";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
@@ -217,7 +217,7 @@
               hostname = "lxc-fs";
               remotes = [{
                 name = "origin";
-                url = "https://gitea.local.grendel71.net/grendel71/devclusterintranix.git";
+                url = "https://github.com/grendel71/devclusterintra.git";
                 branches.main.name = "main";
               }];
             };
