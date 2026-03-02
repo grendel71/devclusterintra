@@ -2,6 +2,7 @@
   modulesPath,
   lib,
   pkgs,
+  config,
   ...
 } @ args:
 {
@@ -74,10 +75,13 @@
 
 
   #networking.nameservers = [ "192.168.1.50" ]; 
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.secrets.k3s_token.sopsFile = ../secrets/secrets.yaml;
+
   services.k3s = {
     enable = true;
     role = "server";
-    token = "Ozh6Kn1yYNIKdK7W5h5Hd6qp8gLpq4IDNTW3L4k9yaE=";
+    tokenFile = config.sops.secrets.k3s_token.path;
     clusterInit = true;
     extraFlags = toString [
       "--disable servicelb"

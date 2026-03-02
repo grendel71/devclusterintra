@@ -75,12 +75,15 @@
   networking.firewall.allowedUDPPorts = [
     8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.secrets.k3s_token.sopsFile = ../secrets/secrets.yaml;
+
   services.k3s = {
     enable = true;
     role = "agent";
-    token = "Ozh6Kn1yYNIKdK7W5h5Hd6qp8gLpq4IDNTW3L4k9yaE=";
+    tokenFile = config.sops.secrets.k3s_token.path;
     serverAddr = "https://192.168.1.179:6443";
-    
+
     extraFlags = (toString [
       "--node-label nixos-nvidia-cdi=enabled"
     ]);

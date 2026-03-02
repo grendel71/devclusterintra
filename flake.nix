@@ -5,12 +5,15 @@
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
   inputs.comin.url = "github:nlewo/comin";
   inputs.comin.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.sops-nix.url = "github:Mic92/sops-nix";
+  inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   outputs =
     {
       nixpkgs,
       disko,
       nixos-facter-modules,
       comin,
+      sops-nix,
       ...
     }:
     {
@@ -61,6 +64,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
+          sops-nix.nixosModules.sops
           ./controlnode/configuration.nix
           ./controlnode/hardware-configuration.nix
           comin.nixosModules.comin
@@ -81,6 +85,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
+          sops-nix.nixosModules.sops
           ./node1/configuration.nix
           ./node1/hardware-configuration.nix
           comin.nixosModules.comin
@@ -101,6 +106,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
+          sops-nix.nixosModules.sops
           ./node2/configuration.nix
           ./node2/hardware-configuration.nix
           comin.nixosModules.comin
@@ -121,6 +127,7 @@
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
+          sops-nix.nixosModules.sops
           ./gpunode1/configuration.nix
           ./gpunode1/hardware-configuration.nix
           comin.nixosModules.comin

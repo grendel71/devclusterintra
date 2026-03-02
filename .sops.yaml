@@ -1,0 +1,19 @@
+keys:
+  # Your personal age key (run: age-keygen, or derive from SSH: ssh-to-age < ~/.ssh/id_ed25519.pub)
+  - &admin age19gt2kg8028zej7qrfysztfsdnhpfw3kvzcn0jm7lr444naj6yqhsv2srug
+
+  # Host keys — derive from each host's SSH host key after first boot:
+  #   ssh-keyscan <host-ip> | grep ed25519 | ssh-to-age
+  - &controlnode age17chxkft35k4cz5fltlqdsedae9v92pea6jephx3yp4skzkhh4cnscsnten
+  - &node1       age1yqgq0ph4y3dqml08vfcl45usq9ehgvvv4r5pka0qxrgt9ydxaqrqjm7fpr
+  - &node2       age10g280pkh2w8rwu57dg3q78x7fvvces0styfex64cgne8hr0sgy0qu279j6
+
+creation_rules:
+  - path_regex: secrets/secrets\.yaml$
+    key_groups:
+      - age:
+          - *admin
+          - *controlnode
+          - *node1
+          - *node2
+
