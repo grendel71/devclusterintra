@@ -191,6 +191,7 @@
           ./htpc/configuration.nix
           ./htpc/hardware-configuration.nix
           comin.nixosModules.comin
+          sops-nix.nixosModules.sops
           ({...}: {
             services.comin = {
               enable = true;

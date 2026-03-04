@@ -90,10 +90,13 @@
   networking.networkmanager.dhcp = "dhcpcd";
 
   networking.wireless.enable  = true;
+  sops.secrets.wifi_psk.sopsFile = ../secrets/secrets.yaml;
 
   networking.wireless.networks = {
     Stevens-IoT = {
-      psk = "jZZ739FxJ8";
+      psk = config.sops.secrets.wifi_psk.path;
     };
   };
+
+  
 }

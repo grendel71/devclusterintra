@@ -7,6 +7,7 @@ keys:
   - &controlnode age17chxkft35k4cz5fltlqdsedae9v92pea6jephx3yp4skzkhh4cnscsnten
   - &node1       age1yqgq0ph4y3dqml08vfcl45usq9ehgvvv4r5pka0qxrgt9ydxaqrqjm7fpr
   - &node2       age10g280pkh2w8rwu57dg3q78x7fvvces0styfex64cgne8hr0sgy0qu279j6
+  - &htpc        age1vc9m0dd4p5275sqmpyktnm7hsar047ygmm68v7uzs8edu93qs4aqyg4v0c
 
 creation_rules:
   - path_regex: secrets/secrets\.yaml$
@@ -16,4 +17,5 @@ creation_rules:
           - *controlnode
           - *node1
           - *node2
+          - *htpc
 
