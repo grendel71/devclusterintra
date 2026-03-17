@@ -3,7 +3,7 @@
 {
   disko.devices = {
     disk.disk1 = {
-      device = lib.mkDefault "/dev/sda";
+      device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi0";
       type = "disk";
       content = {
         type = "gpt";
@@ -34,6 +34,23 @@
         };
       };
     };
+    disk.disk2 = {
+      device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1";
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions = {
+          k3s = {
+            name = "k3s";
+            size = "100%";
+            content = {
+              type = "lvm_pv";
+              vg = "k3s-pool";
+            };
+          };
+        };
+      };
+    };
     lvm_vg = {
       pool = {
         type = "lvm_vg";
@@ -44,6 +61,22 @@
               type = "filesystem";
               format = "ext4";
               mountpoint = "/";
+              mountOptions = [
+                "defaults"
+              ];
+            };
+          };
+        };
+      };
+      k3s-pool = {
+        type = "lvm_vg";
+        lvs = {
+          k3s-lornhorn = {
+            size = "100%FREE";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/media";
               mountOptions = [
                 "defaults"
               ];
