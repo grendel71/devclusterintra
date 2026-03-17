@@ -89,6 +89,8 @@
     ];
   };
 
+  networking.nameservers = [ "1.1.1.1" ]; 
+
   services.openiscsi = {
     enable = true;
     name = "${config.networking.hostName}-initiatorhost";

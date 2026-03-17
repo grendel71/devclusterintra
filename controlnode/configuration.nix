@@ -74,7 +74,7 @@
   ];
 
 
-  #networking.nameservers = [ "192.168.1.50" ]; 
+  networking.nameservers = [ "1.1.1.1" ]; 
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
   sops.secrets.k3s_token.sopsFile = ../secrets/secrets.yaml;
 
