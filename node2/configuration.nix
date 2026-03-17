@@ -83,7 +83,7 @@
     enable = true;
     role = "agent";
     tokenFile = config.sops.secrets.k3s_token.path;
-    serverAddr = "https://192.168.1.179:6443";
+    serverAddr = "https://192.168.1.100:6443";
   };
 
   services.openiscsi = {
