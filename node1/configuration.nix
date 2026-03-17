@@ -46,6 +46,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPDzqtLxq1uc1BW8qb3AGXARRgPT4WBvt7An4trkxS7X nixos@nixos"
   ] ++ (args.extraPublicKeys or []); # this is used for unit-testing this module and can be removed if not needed
 
+
+  users.users.root.hashedPassword = "$6$/Yegvf37QJphJVs5$algHZHWAEQYL7dX2CdtGCobM5FDEf/GPgYyTm6IT0jSvkLE0/W5pVtaCMasuasEVrng1DGFglHhozwGdLj8bm0";
   system.stateVersion = "25.11";
 
   networking.hostName = "workerNode1";
