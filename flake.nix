@@ -100,6 +100,29 @@
                 branches.main.name = "main";
               }];
             };
+            networking.hostName = "controlNode2";
+          })
+        ];
+      };
+      nixosConfigurations.controlNode3 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          ./controlnode2/configuration.nix
+          ./controlnode3/hardware-configuration.nix
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "controlNode3";
+              remotes = [{
+                name = "origin";
+                url = "https://github.com/grendel71/devclusterintra.git";
+                branches.main.name = "main";
+              }];
+            };
+            networking.hostName = "controlNode3";
           })
         ];
       };

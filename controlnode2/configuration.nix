@@ -46,7 +46,6 @@
 
   system.stateVersion = "25.11";
 
-  networking.hostName = "controlNode2";
 
   #networking = {
   #  interfaces = {
