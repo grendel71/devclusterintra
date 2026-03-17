@@ -86,6 +86,7 @@
     extraFlags = toString [
       "--disable servicelb"
       "--disable traefik"
+      "--tls-san 192.168.1.100"
     ];
   };
 
