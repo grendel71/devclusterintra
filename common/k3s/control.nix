@@ -1,4 +1,4 @@
-{config, pkgs, inputs, ...}:
+{config, pkgs, ...}:
 {
     sops.secrets.k3s_token.sopsFile = ../secrets/secrets.yaml;
     networking.firewall.allowedTCPPorts = [

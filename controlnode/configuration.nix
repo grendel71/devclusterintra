@@ -43,9 +43,6 @@
     8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];
 
-
-  networking.nameservers = [ "1.1.1.1" ]; 
-
   sops.secrets.k3s_token.sopsFile = ../secrets/secrets.yaml;
 
   services.k3s = {
