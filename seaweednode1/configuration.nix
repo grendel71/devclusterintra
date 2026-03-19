@@ -63,7 +63,7 @@
 
   virtualisation.docker.enable = true;
 
-  fileSystems."/mnt/" = {
+  fileSystems."/mnt" = {
    device = "/dev/disk/by-id/scsi-0QEMU_QEMU_HARDDISK_drive-scsi1-part1";
    fsType = "ext4";
    options = [ # If you don't have this options attribute, it'll default to "defaults" 
