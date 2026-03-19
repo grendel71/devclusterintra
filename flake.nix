@@ -67,6 +67,7 @@
           sops-nix.nixosModules.sops
           ./controlnode/configuration.nix
           ./controlnode/hardware-configuration.nix
+          ./common
           comin.nixosModules.comin
           ({...}: {
             services.comin = {
@@ -89,6 +90,8 @@
           sops-nix.nixosModules.sops
           ./controlnode2/configuration.nix
           ./controlnode2/hardware-configuration.nix
+          ./common
+          ./common/k3s/control.nix
           comin.nixosModules.comin
           ({...}: {
             services.comin = {
@@ -111,6 +114,8 @@
           sops-nix.nixosModules.sops
           ./controlnode2/configuration.nix
           ./controlnode3/hardware-configuration.nix
+          ./common
+          ./common/k3s/control.nix
           comin.nixosModules.comin
           ({...}: {
             services.comin = {
@@ -133,6 +138,8 @@
           sops-nix.nixosModules.sops
           ./node1/configuration.nix
           ./node1/hardware-configuration.nix
+          ./common
+          ./common/k3s/worker.nix
           comin.nixosModules.comin
           ({...}: {
             services.comin = {
@@ -154,52 +161,13 @@
           sops-nix.nixosModules.sops
           ./node2/configuration.nix
           ./node2/hardware-configuration.nix
+          ./common
+          ./common/k3s/worker.nix
           comin.nixosModules.comin
           ({...}: {
             services.comin = {
               enable = true;
               hostname = "node2";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
-        ];
-      };
-      nixosConfigurations.gpunode1 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          sops-nix.nixosModules.sops
-          ./gpunode1/configuration.nix
-          ./gpunode1/hardware-configuration.nix
-          comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "gpunode1";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
-        ];
-      };
-      nixosConfigurations.storageBackend = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          disko.nixosModules.disko
-          ./storageBackend/configuration.nix
-          ./storageBackend/hardware-configuration.nix
-          comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "storageBackend";
               remotes = [{
                 name = "origin";
                 url = "https://github.com/grendel71/devclusterintra.git";
@@ -215,6 +183,7 @@
           disko.nixosModules.disko
           ./seaweednode1/configuration.nix
           ./seaweednode1/hardware-configuration.nix
+          ./common
           comin.nixosModules.comin
           ({...}: {
             services.comin = {
