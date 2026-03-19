@@ -24,4 +24,7 @@
 
   sops.age.keyFile = "/etc/nixos/age.agekey";
 
+  services.logind.lidSwitch = "ignore";
+  services.logind.lidSwitchDocked = "ignore";
+
 }
