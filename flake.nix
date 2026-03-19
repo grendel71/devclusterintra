@@ -177,6 +177,29 @@
           })
         ];
       };
+      nixosConfigurations.node3 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          ./node3/configuration.nix
+          ./node3/hardware-configuration.nix
+          ./common
+          ./common/k3s/worker.nix
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "node3";
+              remotes = [{
+                name = "origin";
+                url = "https://github.com/grendel71/devclusterintra.git";
+                branches.main.name = "main";
+              }];
+            };
+          })
+        ];
+      };
       nixosConfigurations.seaweednode1 = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
