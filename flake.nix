@@ -90,6 +90,7 @@
           sops-nix.nixosModules.sops
           ./controlnode2/configuration.nix
           ./controlnode2/hardware-configuration.nix
+          ./controlnode2/networking.nix
           ./common
           ./common/k3s/control.nix
           comin.nixosModules.comin
@@ -114,6 +115,7 @@
           sops-nix.nixosModules.sops
           ./controlnode2/configuration.nix
           ./controlnode3/hardware-configuration.nix
+          ./controlnode3/networking.nix
           ./common
           ./common/k3s/control.nix
           comin.nixosModules.comin

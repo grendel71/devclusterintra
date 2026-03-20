@@ -18,21 +18,21 @@
 
   networking.hostName = "controlNode";
 
-  #networking = {
-  #  interfaces = {
-  #    ens18.ipv4.addresses = [{
-  #      address = "192.168.1.185";
-  #      prefixLength = 24;
-  #    }];
-  #
-  #  };
-  #  defaultGateway = {
-  #      address = "192.168.1.1";
-  #      interface = "ens18";
-  #  };
-  #};
+  networking = {
+    interfaces = {
+      ens18.ipv4.addresses = [{
+        address = "192.168.1.179";
+        prefixLength = 24;
+      }];
+  
+    };
+    defaultGateway = {
+        address = "192.168.1.1";
+        interface = "ens18";
+    };
+  };
 
-  networking.networkmanager.dhcp = "dhcpcd";
+  #networking.networkmanager.dhcp = "dhcpcd";
 
   networking.firewall.allowedTCPPorts = [
     6443 # k3s: required so that pods can reach the API server (running on port 6443 by default)
