@@ -20,7 +20,7 @@
 
   networking.hostName = "workerNode3";
 
-  networking.networkmanager.dhcp = "dhcpcd";
+  #networking.networkmanager.dhcp = "dhcpcd";
 
   sops.age.keyFile = "/etc/nixos/age.agekey";
 

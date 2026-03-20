@@ -11,4 +11,5 @@
 
   networking.nameservers = [ "1.1.1.1" ]; 
 
+  networking.networkmanager.enable = true;
 }

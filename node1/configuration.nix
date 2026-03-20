@@ -33,7 +33,7 @@
   };
 
 
-  networking.networkmanager.dhcp = "dhcpcd";
+  #networking.networkmanager.dhcp = "dhcpcd";
 
   networking.nameservers = [ "1.1.1.1" ]; 
 

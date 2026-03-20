@@ -28,6 +28,6 @@
   #  };
   #};
 
-  networking.networkmanager.dhcp = "dhcpcd";
+  #networking.networkmanager.dhcp = "dhcpcd";
 
 }
