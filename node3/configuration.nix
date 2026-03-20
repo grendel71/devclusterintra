@@ -29,7 +29,7 @@
   networking = {
         interfaces = {
         enp0s31f6.ipv4.addresses = [{
-            address = "192.168.1.229";
+            address = "192.168.1.243";
             prefixLength = 24;
         }];
     
