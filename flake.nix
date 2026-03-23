@@ -7,6 +7,7 @@
   inputs.comin.inputs.nixpkgs.follows = "nixpkgs";
   inputs.sops-nix.url = "github:Mic92/sops-nix";
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.nixos-seaweedfs.url = "github:xanderio/nixos-seaweedfs";
   outputs =
     {
       nixpkgs,
@@ -14,6 +15,7 @@
       nixos-facter-modules,
       comin,
       sops-nix,
+      nixos-seaweedfs,
       ...
     }:
     {
@@ -210,6 +212,8 @@
           ./seaweednode1/hardware-configuration.nix
           ./common
           comin.nixosModules.comin
+          nixos-seaweedfs.nixosModules.seaweedfs   # <-- import the module
+          { nixpkgs.overlays = [ nixos-seaweedfs.overlays.default ]; }
           ({...}: {
             services.comin = {
               enable = true;
