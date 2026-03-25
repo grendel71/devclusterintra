@@ -17,6 +17,15 @@
         serverAddr = "https://192.168.1.100:6443";
     };
 
+    # Longhorn RWX volumes use nsenter into host namespace where /sbin must have mount utilities
+    system.activationScripts.longhorn-rwx-symlinks = ''
+        mkdir -p /sbin
+        ln -sf ${pkgs.nfs-utils}/bin/mount.nfs /sbin/mount.nfs
+        ln -sf ${pkgs.nfs-utils}/bin/mount.nfs4 /sbin/mount.nfs4
+        ln -sf /run/wrappers/bin/mount /sbin/mount
+        ln -sf /run/wrappers/bin/umount /sbin/umount
+    '';
+
     services.openiscsi = {
         enable = true;
         name = "${config.networking.hostName}-initiatorhost";

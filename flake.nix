@@ -264,6 +264,17 @@
           })
         ];
       };
+
+      nixosConfigurations.cloud = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          "${nixpkgs}/nixos/modules/virtualisation/oci-image.nix"
+          ./cloud/configuration.nix
+        ];
+      };
+
+      packages.aarch64-linux.default =
+        self.nixosConfigurations.cloud.config.system.build.OCIImage;
       # Slightly experimental: Like generic, but with nixos-facter (https://github.com/numtide/nixos-facter)
       # nixos-anywhere --flake .#generic-nixos-facter --generate-hardware-config nixos-facter facter.json <hostname>
       nixosConfigurations.generic-nixos-facter = nixpkgs.lib.nixosSystem {
