@@ -42,5 +42,7 @@
   #};
 
   #networking.networkmanager.dhcp = "dhcpcd";
-
+  networking.firewall.allowedTCPPorts = [
+    11434
+  ];
 }
