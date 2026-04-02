@@ -25,6 +25,8 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINgBdHzvVPr15wesz8sK2nqCapxTW2202oYAroxjDWQd campus\blau2@HFSL-HANLON-29"
     ];
   };
+
+  services.openssh.settings.GatewayPorts = "yes";
   #networking = {
   #  interfaces = {
   #    ens18.ipv4.addresses = [{
