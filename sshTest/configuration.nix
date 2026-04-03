@@ -23,6 +23,7 @@
     ];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINgBdHzvVPr15wesz8sK2nqCapxTW2202oYAroxjDWQd campus\blau2@HFSL-HANLON-29"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB4wotcCd7CA3sMlP60BzFZDNTBl/6vZMrHxCh8BUvvQ campus\blau2@LIBPUB03"
     ];
   };
 
