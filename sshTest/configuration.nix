@@ -46,4 +46,11 @@
   networking.firewall.allowedTCPPorts = [
     11434
   ];
+
+  environment.systemPackages = with pkgs; [
+    git
+    nmap
+    screen
+    tmux
+  ];
 }
