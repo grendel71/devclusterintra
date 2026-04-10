@@ -58,7 +58,7 @@
     8472 # k3s, flannel: required if using multi-node for inter-node networking
   ];
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs-unstable.config.allowUnfree = true;
   #nixpkgs.config.cudaSupport = false;
 
   virtualisation.docker.enable = true;

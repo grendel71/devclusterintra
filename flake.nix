@@ -1,5 +1,6 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=25.11";
+  inputs.nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.disko.url = "github:nix-community/disko";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
@@ -10,10 +11,12 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       disko,
       nixos-facter-modules,
       comin,
       sops-nix,
+      self,
       ...
     }:
     {
@@ -202,7 +205,7 @@
           })
         ];
       };
-      nixosConfigurations.seaweednode1 = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.seaweednode1 = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
@@ -214,6 +217,28 @@
             services.comin = {
               enable = true;
               hostname = "seaweednode1";
+              remotes = [{
+                name = "origin";
+                url = "https://github.com/grendel71/devclusterintra.git";
+                branches.main.name = "main";
+              }];
+            };
+          })
+        ];
+      };
+      nixosConfigurations.seaweednode2 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          ./seaweednode2/configuration.nix
+          ./seaweednode2/hardware-configuration.nix
+          ./common
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "seaweednode2";
               remotes = [{
                 name = "origin";
                 url = "https://github.com/grendel71/devclusterintra.git";

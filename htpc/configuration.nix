@@ -2,6 +2,7 @@
   modulesPath,
   lib,
   pkgs,
+  config,
   ...
 } @ args:
 {
