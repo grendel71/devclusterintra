@@ -1,5 +1,6 @@
 {
   inputs.nixpkgs.url = "github:nixos/nixpkgs?ref=25.11";
+  inputs.nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.disko.url = "github:nix-community/disko";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
   inputs.nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
@@ -10,10 +11,12 @@
   outputs =
     {
       nixpkgs,
+      nixpkgs-unstable,
       disko,
       nixos-facter-modules,
       comin,
       sops-nix,
+      self,
       ...
     }:
     {
@@ -260,7 +263,7 @@
           )
         ];
       };
-      nixosConfigurations.seaweednode1 = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.seaweednode1 = nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [
           disko.nixosModules.disko
@@ -284,6 +287,28 @@
               };
             }
           )
+        ];
+      };
+      nixosConfigurations.seaweednode2 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          ./seaweednode2/configuration.nix
+          ./seaweednode2/hardware-configuration.nix
+          ./common
+          comin.nixosModules.comin
+          ({...}: {
+            services.comin = {
+              enable = true;
+              hostname = "seaweednode2";
+              remotes = [{
+                name = "origin";
+                url = "https://github.com/grendel71/devclusterintra.git";
+                branches.main.name = "main";
+              }];
+            };
+          })
         ];
       };
       nixosConfigurations.htpc = nixpkgs.lib.nixosSystem {
@@ -337,6 +362,17 @@
           )
         ];
       };
+
+      nixosConfigurations.cloud = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+        modules = [
+          "${nixpkgs}/nixos/modules/virtualisation/oci-image.nix"
+          ./cloud/configuration.nix
+        ];
+      };
+
+      packages.aarch64-linux.default =
+        self.nixosConfigurations.cloud.config.system.build.OCIImage;
       # Slightly experimental: Like generic, but with nixos-facter (https://github.com/numtide/nixos-facter)
       # nixos-anywhere --flake .#generic-nixos-facter --generate-hardware-config nixos-facter facter.json <hostname>
       nixosConfigurations.generic-nixos-facter = nixpkgs.lib.nixosSystem {
