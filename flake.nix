@@ -72,17 +72,22 @@
           ./controlnode/hardware-configuration.nix
           ./common
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "controlNode";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "controlNode";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
 
@@ -97,18 +102,23 @@
           ./common
           ./common/k3s/control.nix
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "controlNode2";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-            networking.hostName = "controlNode2";
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "controlNode2";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+              networking.hostName = "controlNode2";
+            }
+          )
         ];
       };
       nixosConfigurations.controlNode3 = nixpkgs.lib.nixosSystem {
@@ -122,18 +132,23 @@
           ./common
           ./common/k3s/control.nix
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "controlNode3";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-            networking.hostName = "controlNode3";
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "controlNode3";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+              networking.hostName = "controlNode3";
+            }
+          )
         ];
       };
       nixosConfigurations.node1 = nixpkgs.lib.nixosSystem {
@@ -146,17 +161,22 @@
           ./common
           ./common/k3s/worker.nix
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "node1";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "node1";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
       nixosConfigurations.node2 = nixpkgs.lib.nixosSystem {
@@ -169,17 +189,22 @@
           ./common
           ./common/k3s/worker.nix
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "node2";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "node2";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
       nixosConfigurations.node3 = nixpkgs.lib.nixosSystem {
@@ -192,17 +217,50 @@
           ./common
           ./common/k3s/worker.nix
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "node3";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "node3";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
+        ];
+      };
+      nixosConfigurations.sshTest = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          disko.nixosModules.disko
+          sops-nix.nixosModules.sops
+          ./sshTest/configuration.nix
+          ./sshTest/hardware-configuration.nix
+          ./common
+          ./sshTest/networking.nix
+          comin.nixosModules.comin
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "sshTest";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
       nixosConfigurations.seaweednode1 = nixpkgs-unstable.lib.nixosSystem {
@@ -213,17 +271,22 @@
           ./seaweednode1/hardware-configuration.nix
           ./common
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "seaweednode1";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "seaweednode1";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
       nixosConfigurations.seaweednode2 = nixpkgs.lib.nixosSystem {
@@ -256,17 +319,22 @@
           ./htpc/hardware-configuration.nix
           comin.nixosModules.comin
           sops-nix.nixosModules.sops
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "htpc";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "htpc";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
 
@@ -276,17 +344,22 @@
           disko.nixosModules.disko
           ./lxc-fs/configuration.nix
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "lxc-fs";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "lxc-fs";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
 

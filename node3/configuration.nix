@@ -4,7 +4,7 @@
   pkgs,
   config,
   ...
-} @ args:
+}@args:
 {
   imports = [
     ./disk-config.nix
@@ -27,16 +27,31 @@
   services.logind.lidSwitchExternalPower = "ignore";
 
   networking = {
-        interfaces = {
-        enp0s31f6.ipv4.addresses = [{
-            address = "192.168.1.243";
-            prefixLength = 24;
-        }];
-    
-        };
-        defaultGateway = {
-            address = "192.168.1.1";
-            interface = "enp0s31f6";
-        };
+    interfaces = {
+      enp0s31f6.ipv4.addresses = [
+        {
+          address = "192.168.1.243";
+          prefixLength = 24;
+        }
+      ];
+
+    };
+    defaultGateway = {
+      address = "192.168.1.1";
+      interface = "enp0s31f6";
+    };
+  };
+
+  users.users.blau2 = {
+    isNormalUser = true;
+    home = "/home/blau2";
+    description = "Alice Foobar";
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINgBdHzvVPr15wesz8sK2nqCapxTW2202oYAroxjDWQd campus\blau2@HFSL-HANLON-29"
+    ];
   };
 }
