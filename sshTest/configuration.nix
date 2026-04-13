@@ -69,4 +69,14 @@
   virtualisation.docker = {
     enable = true;
   };
+
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = false;
+      PermitEmptyPasswords = "yes";
+    };
+  };
 }

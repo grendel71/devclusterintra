@@ -242,7 +242,8 @@
           sops-nix.nixosModules.sops
           ./sshTest/configuration.nix
           ./sshTest/hardware-configuration.nix
-          ./common
+          ./common/generic.nix
+          ./common/pkgs.nix
           ./sshTest/networking.nix
           comin.nixosModules.comin
           (
@@ -298,17 +299,22 @@
           ./seaweednode2/hardware-configuration.nix
           ./common
           comin.nixosModules.comin
-          ({...}: {
-            services.comin = {
-              enable = true;
-              hostname = "seaweednode2";
-              remotes = [{
-                name = "origin";
-                url = "https://github.com/grendel71/devclusterintra.git";
-                branches.main.name = "main";
-              }];
-            };
-          })
+          (
+            { ... }:
+            {
+              services.comin = {
+                enable = true;
+                hostname = "seaweednode2";
+                remotes = [
+                  {
+                    name = "origin";
+                    url = "https://github.com/grendel71/devclusterintra.git";
+                    branches.main.name = "main";
+                  }
+                ];
+              };
+            }
+          )
         ];
       };
       nixosConfigurations.htpc = nixpkgs.lib.nixosSystem {
@@ -371,8 +377,7 @@
         ];
       };
 
-      packages.aarch64-linux.default =
-        self.nixosConfigurations.cloud.config.system.build.OCIImage;
+      packages.aarch64-linux.default = self.nixosConfigurations.cloud.config.system.build.OCIImage;
       # Slightly experimental: Like generic, but with nixos-facter (https://github.com/numtide/nixos-facter)
       # nixos-anywhere --flake .#generic-nixos-facter --generate-hardware-config nixos-facter facter.json <hostname>
       nixosConfigurations.generic-nixos-facter = nixpkgs.lib.nixosSystem {
