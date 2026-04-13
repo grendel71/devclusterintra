@@ -24,6 +24,22 @@
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINgBdHzvVPr15wesz8sK2nqCapxTW2202oYAroxjDWQd campus\blau2@HFSL-HANLON-29"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB4wotcCd7CA3sMlP60BzFZDNTBl/6vZMrHxCh8BUvvQ campus\blau2@LIBPUB03"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIfsl37+JcWrenYNk12EMKzFWTqBQC9i2j6OlGF20W/5 blau@blau-pc"
+
+    ];
+  };
+
+  users.users.hajin = {
+    isNormalUser = true;
+    home = "/home/hajin";
+    description = "Hajin lim";
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+      "docker"
+    ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID0fQldW2bHZphOxdLX+qQgLmvGHX3yTx/JbpiW7RUc0 zero734kr@gmail.com"
     ];
   };
 
@@ -43,14 +59,14 @@
   #};
 
   #networking.networkmanager.dhcp = "dhcpcd";
-  networking.firewall.allowedTCPPorts = [
-    11434
-  ];
 
   environment.systemPackages = with pkgs; [
     git
-    nmap
-    screen
-    tmux
+    htop
+    bashtop
   ];
+
+  virtualisation.docker = {
+    enable = true;
+  };
 }
