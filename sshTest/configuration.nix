@@ -63,7 +63,7 @@
   environment.systemPackages = with pkgs; [
     git
     htop
-    bashtop
+    btop
   ];
 
   virtualisation.docker = {
