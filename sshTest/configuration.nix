@@ -79,4 +79,6 @@
       PermitEmptyPasswords = "yes";
     };
   };
+
+  security.sudo.wheelNeedsPassword = false;
 }
